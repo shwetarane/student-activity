@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, UserProfileForm
 
@@ -12,11 +13,12 @@ def index(request):
 	context = {'username' : username}
 	return render(request, 'blog-home', context)
 
-@login_required
-def profile(request):
-	return render(request, 'users/profile.html', context)
-
 def register(request):
+    # try:
+    #     profile = request.user.UserProfileForm
+    # except UserProfile.DoesNotExist:
+    #     profile = UserProfile(user = request.user)
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         profile_form = UserProfileForm(request.POST)
@@ -27,18 +29,23 @@ def register(request):
             profile = profile_form.save(commit = False)
             profile.user = user
 
-            profile.save()
+            # profile.save()
 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=password)
             login(request, user)
-
-            return redirect('blog-home')
+            messages.success(request, f'Account created. You will now be able to login in {username}!')
+            return redirect('login')
     else:
         form = SignUpForm()
         profile_form = UserProfileForm()
 
     context = {'form' : form, 'profile_form' : profile_form}
     return render(request, 'users/register.html', context)
+
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
 

@@ -9,6 +9,7 @@ class UserProfile(models.Model):
     state = models.CharField(max_length=30, blank=True)
     zip_code = models.IntegerField(default=78758)
     birth_date = models.DateField(null=True, blank=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pictures')
 
     def __str__(self):
-    	return self.user.username
+    	return f'{self.user.username} Profile'
