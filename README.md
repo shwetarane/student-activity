@@ -24,7 +24,7 @@ In Terminal , where you want the project,
 
 ```git clone git@github.com:shwetarane/student-activity.git```
 
-
+```python manage.py runserver```
 
 ## Functions
 
