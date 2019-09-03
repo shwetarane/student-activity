@@ -28,4 +28,15 @@ class UserProfileForm(forms.ModelForm):
 		model = UserProfile
 		fields = ('birth_date', 'address', 'city', 'state', 'zip_code')
 
+# to update username and email
+class UserUpdateForm(forms.ModelForm):
+	email = forms.EmailField()
+	class Meta:
+		model = User
+		fields = ('username', 'email',)
 
+# #to update avatar  
+class UserProfileUpdateForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ('address','city','state','zip_code', 'birth_date','image', )

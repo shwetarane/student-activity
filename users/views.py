@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, UserProfileForm
+from .forms import SignUpForm, UserProfileForm, UserUpdateForm, UserProfileUpdateForm
 
 def index(request):
 	if request.user.is_authenticated:
@@ -47,5 +47,26 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+        p_form = UserProfileUpdateForm(request.POST, 
+                                       request.FILES, 
+                                       instance = request.user.userprofile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Account Information updated!')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance = request.user)
+        p_form = UserProfileUpdateForm(instance = request.user.userprofile)
+    
+    context={
+        'u_form' : u_form, 
+        'p_form' : p_form
+    }
+    return render(request, 'users/profile.html', context)
+
+
+
 
