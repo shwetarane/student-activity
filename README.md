@@ -26,11 +26,13 @@ To activate virtual environment, ```workon dev1```
 
 ```git clone git@github.com:shwetarane/student-activity.git```
 
+```python manage.py makemigrations```
+
 ```python manage.py migrate```
 
 ```python manage.py createsuperuser```
 
-To access django-admin : localhost:8000/admin/
+To access django-admin, use creds for superuser we just created : ```localhost:8000/admin/```
 
 ### To run the project:
 
