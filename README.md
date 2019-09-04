@@ -40,10 +40,10 @@ To access django-admin : localhost:8000/admin/
 
 ## Functions
 
-* *Student Login*
-* *Register*
-* *Update* *Information* 
-* *Username*/Password Retrieval
+* **Student** **Login**
+* **Register**
+* **Update** **Information** 
+* Username/Password Retrieval
 * Student/Faculty search
 * Textbook Search
 * Purchase Books
