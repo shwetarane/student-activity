@@ -19,8 +19,10 @@
   ```
 
 ## Setting up the project
-Needs git installed on your machine. 
+Needs [git](https://git-scm.com/download/win) installed and set-up on your machine.  
 In Terminal, ensure virtual environment is activated, where you want the project,
+
+To activate virtual environment, ```workon dev1```
 
 ```git clone git@github.com:shwetarane/student-activity.git```
 
@@ -38,10 +40,10 @@ To access django-admin : localhost:8000/admin/
 
 ## Functions
 
-* Student Login
-* Register
-* Update Information 
-* Username/Password Retrieval
+* *Student Login*
+* *Register*
+* *Update* *Information* 
+* *Username*/Password Retrieval
 * Student/Faculty search
 * Textbook Search
 * Purchase Books
