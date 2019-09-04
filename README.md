@@ -19,7 +19,7 @@
   ```
 
 ## Setting up the project
-
+Needs git installed on your machine. 
 In Terminal, ensure virtual environment is activated, where you want the project,
 
 ```git clone git@github.com:shwetarane/student-activity.git```
