@@ -26,8 +26,6 @@ To activate virtual environment, ```workon dev1```
 
 ```git clone git@github.com:shwetarane/student-activity.git```
 
-```python manage.py makemigrations```
-
 ```python manage.py migrate```
 
 ```python manage.py createsuperuser```
