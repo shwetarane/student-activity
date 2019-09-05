@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-* Install [python](https://www.python.org/downloads/) 
+* Install [python](https://www.python.org/downloads/) and pip
 
 * (optional, but recommended) Install virtual environment, [https://virtualenvwrapper.readthedocs.io/en/latest/install.html](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
 
