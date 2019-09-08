@@ -4,8 +4,10 @@
 
 * Install [python](https://www.python.org/downloads/) and pip
 
-* (optional, but recommended) Install virtual environment, [https://virtualenvwrapper.readthedocs.io/en/latest/install.html](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
-
+* (optional, but recommended) Install virtual environment, [https://virtualenvwrapper.readthedocs.io/en/latest/install.html](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) -> For this step, make sure you create the following directory before update the bash file. For MAC Users, its bash_profile in your home directory.
+```bash
+  mkdir $HOME/.virtualenvs
+ ```
 * Create virtual environment for your project, say dev1
 
   ```bash
@@ -37,6 +39,18 @@ To activate virtual environment, ```workon dev1```
 To access django-admin, use creds for superuser we just created : ```localhost:8000/admin/```
 
 ```python manage.py runserver```
+
+If encoutered with error on running, install the following binaries as well :-
+
+```pip3 install pillow```
+
+```pip3 install django-crispy-forms```
+
+Also make sure, to import Django in the corresponding python & virtual environment. 
+
+```python3```
+
+```import django```
 
 ## Functions
 
