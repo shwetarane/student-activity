@@ -49,6 +49,8 @@ urlpatterns = [
         ), 
         name='password_reset_complete'),
     path('', include('blog.urls')),
+    # Divya added this
+    path('users/',include('users.urls',namespace='users')),
 ]
 
 if settings.DEBUG:

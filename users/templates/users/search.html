@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+
+{% block titile %} Find People {% endblock %}
+{% block content %}
+    {%if results %}
+        <h1> Search Results </h1>
+        <table style="width:100%">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>City</th>
+                <th>E-mail</th>
+                <th>Image</th>
+            </tr>
+            
+                {% for users in results %}
+                <tr>
+                    <td>{{ users.user.first_name }}</td>
+                    <td>{{ users.user.last_name }}</td>    
+                    <td>{{ users.department }}</td>
+                    <td>{{ users.city }}</td>
+                    <td>{{ users.user.email }}</td>
+                    <td><img class="rounded-circle account-img" src="{{ users.image.url }}"> </td>
+
+                {% empty %}
+                    <td><p> There are no results for your query </p></td>
+                {% endfor %}
+            </tr>
+        </table>
+        <u><B><p>  <a href="{% url "users:student_search" %}"> Seach Again</a></p></B></u>
+    {% else %}
+        <H1> People Search </H1>
+        <form action="." method="get">
+            {{ form.as_p }}
+            <input type="Submit" value="Search">
+        </form>
+    {% endif %}
+{% endblock %}
