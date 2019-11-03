@@ -3,6 +3,21 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
 
+
+role_choices = [
+		('students','Students'),
+		('professor','Professor'),
+	]
+department_choices = [
+		('','None'),
+		('Computer science','Computer science'),
+		('Mechnical Engineering','Mechanical Engineering'),
+		('biotechnology','Biotechnology'),
+		('civilengineering','Civil Engineering'),
+		('aerospace','Aerospace'),
+		('chemicalengineering','Chemical Engineering')
+	]
+
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField()
 	first_name = forms.CharField()
@@ -39,4 +54,13 @@ class UserUpdateForm(forms.ModelForm):
 class UserProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('address','city','state','zip_code', 'birth_date','image', )
+		fields = ('address','city','state','zip_code', 'birth_date','image','department')
+
+class SearchForm(forms.Form):
+	first_name = forms.CharField(max_length=30,required=False)
+	last_name = forms.CharField(max_length=30,required=False)
+	#email = forms.EmailField()
+	department = forms.CharField(required=False,label='Select the department name',
+			widget=forms.Select(choices=department_choices))
+	#role = forms.CharField(label='Select the role Student/Professor',
+	#		widget=forms.Select(choices=role_choices))
