@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+
+{% block titile %} Find Book {% endblock %}
+{% block content %}
+    {%if results %}
+        <h1> Search Results </h1>
+        <table style="width:100%">
+            <tr>
+                <th>Image</th>
+                <th>Book Name</th>
+                <th>Book author</th>
+                <th>Book Publisher</th>
+                <th>ISBN Number</th>
+                <th>Available in Library</th>
+                <th>Library shelf</th>
+                <th>BookStore name</th>
+                <th>More details</th>
+            </tr>
+            
+                {% for book in results %}
+                <tr>
+                    <td><img src="{{ book.image.url }}"> </td>
+                    <td>{{ book.book_name }}</td>
+                    <td>{{ book.book_author }}</td>    
+                    <td>{{ book.publisher }}</td>
+                    <td>{{ book.isbn_number }}</td>
+                    <td>{{ book.available_in_library }}</td>
+                    <td>{{ book.library_shelf }}</td>
+                    <td><a href="{% url "books:book_lists"%}">{{ book.book_store }} </a></td>
+                    <td><a href="{% url "books:book_details" book.slug %}">More Details</td>
+                {% empty %}
+                    <td><p> There are no books available for your query </p></td>
+                {% endfor %}
+            </tr>
+        </table>
+        <u><B><p>  <a href="{% url "books:book_search" %}"> Seach Again</a></p></B></u>
+    {% else %}
+        <H1> Book Search </H1>
+        <form action="." method="get">
+            {{ form.as_p }}
+            <input type="Submit" value="Search">
+        </form>
+    {% endif %}
+{% endblock %}

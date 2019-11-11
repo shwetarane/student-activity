@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style type="text/css">
+            #container { /*Your main page */
+            width: 900px;
+            height: 900px;
+            margin-left: auto;
+            margin-right: auto;
+                
+            }
+            #Box   {
+            width: 200px;
+            height: 200px;
+            }
+            img   {
+            display: inline-block;
+            margin: 10px 10px;
+            width: 200px;
+            height: 200px;
+            padding: 10px;  /*Lets give these guy's some padding*/
+            padding-top: 10px;
+            background-color:#777474;
+            padding:10px;
+            border:2px solid #000000;
+            }
+            .right {
+                float: right;
+                width: 200px;
+                background-color: rgb(249, 249, 249);
+            }
+</style>
+</head>
+<body>
+
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}
+Books 
+{% endblock %}
+{% block content %}
+    <div id="main" class="book-list">
+    <h1>Book Store</h1>
+    <div class="right">
+        <a href= "{% url "books:book_search" %}">
+            <B>Search by Books</B>
+        </a>
+    </div>
+    <B><center>{% include "pagination.html" with page=books %} </B></center>
+    {% for book in books %}
+        <div class="row">
+                <figure>
+                <img src="{% if book.image %} {{ book.image.url }} {% else %}{% static "img/default.jpg" %} {% endif %}  ">
+                <figcaption><a href="{% url "books:book_details" book.slug %}">
+                    {{ book.book_name }}
+                </figcaption></a>
+                <figcaption>Price : ${{ book.price }}</figcaption>
+                </figure>
+                <div class="column">
+                    {{ book.book_description }}
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+    <br>
+    <B><center>{% include "pagination.html" with page=books %} </center></B>
+    <br>
+
+    <a href="{% url "books:book_lists" %}">
+        <B><center>Go to Books Home page</center></B>
+    </a>
+    <br>
+{% endblock %}

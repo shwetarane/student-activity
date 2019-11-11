@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ book.book_name }}{% endblock %}
+
+{% block content %}
+
+    <h1> {{ book.book_name }}</h1>
+    <p class="date">
+        Published by {{ book.publisher }} 
+    </p>
+    
+    <div class="row">
+        <img src="{% if book.image %} {{ book.image.url }} {% else %}{% static "img/default.jpg" %} {% endif %}  ">
+        
+        <div class="column" >
+            <span style="margin-left:4em"><B> Author : </B>{{book.book_author}}</span> <br>
+            <span style="margin-left:4em"><B> Published : </B>{{book.published_date}}</span> <br>
+            <span style="margin-left:4em"><B> Pages : </B>{{book.num_pages}}</span> <br>
+            <span style="margin-left:4em"><B> ISBN Number : </B>{{book.isbn_number}}</span> <br>
+            <span style="margin-left:4em"><B> Quantity Available : </B>{{book.quantity}}</span> <br>
+            <span style="margin-left:4em"><B> Price : </B>{{book.price}}</span> <br>
+            
+        </div>
+    </div>
+    <br>
+    <span><B> Description : </B>{{book.book_description}}</span> <br>
+    <a href="{% url "books:book_lists" %}">
+        <B><center>Go to Books Home</center></B>
+    </a>
+    <br>
+{% endblock %}

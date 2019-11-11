@@ -20,7 +20,7 @@
         }
         th, td {
           padding: 5px;
-          text-align: center;
+          text-align: center;    
         }
         </style>
   </head>
@@ -43,7 +43,8 @@
                 <a class="nav-item nav-link" href="{%  url 'post-create' %}">New Post</a>
                 <a class="nav-item nav-link" href="{%  url 'profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{%  url 'users:student_search' %}">Student Search</a>
-
+                <a class="nav-item nav-link" href="{%  url 'books:book_lists' %}">Books Store</a>
+                <a class="nav-item nav-link" href="{%  url 'books:book_search' %}">Books search</a>
                 <a class="nav-item nav-link" href="{%  url 'logout' %}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{%  url 'login' %}">Login</a>
@@ -65,7 +66,7 @@
               {% endfor %}
             {% endif %}
             {% block content %}{% endblock %}
-
+            
           </div>
       <!--     <div class="col-md-4">
             <div class="content-section">
