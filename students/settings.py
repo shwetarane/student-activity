@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'books.apps.BooksConfig',
+    'faculty.apps.FacultyConfig',
     'crispy_forms',
     
     'django.contrib.admin',

@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+
+{% block titile %} Find Faculty {% endblock %}
+{% block content %}
+    {%if results %}
+        <h1> Search Results </h1>
+        <table style="width:100%">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>Phone</th>
+                <th>E-mail</th>
+                <th>Image</th>
+            </tr>
+            
+                {% for faculty in results %}
+                <tr>
+                    <td>{{ faculty.faculty_fname }}</td>
+                    <td>{{ faculty.faculty_lname }}</td>    
+                    <td>{{ faculty.faculty_department }}</td>
+                    <td>{{ faculty.faculty_phoneno }}</td>
+                    <td>{{ faculty.faculty_email }}</td>
+                    <td><img class="rounded-circle account-img" src="{{ faculty.image.url }}"> </td>
+
+                {% empty %}
+                    <td><p> There are no results for your query </p></td>
+                {% endfor %}
+            </tr>
+        </table>
+        <u><B><p>  <a href="{% url "faculty:search_faculty" %}"> Seach Again</a></p></B></u>
+    {% else %}
+        <H1> Faculty Search </H1>
+        <form action="." method="get">
+            {{ form.as_p }}
+            <input type="Submit" value="Search">
+        </form>
+    {% endif %}
+{% endblock %}

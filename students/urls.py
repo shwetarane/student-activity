@@ -52,6 +52,7 @@ urlpatterns = [
     # Divya added this
     path('users/',include('users.urls',namespace='users')),
     path('books/',include('books.urls',namespace='books')),
+    path('faculty/',include('faculty.urls',namespace='faculty')),
 ]
 
 if settings.DEBUG:
