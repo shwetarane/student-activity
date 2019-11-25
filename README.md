@@ -57,7 +57,7 @@ Also make sure, to import Django in the corresponding python & virtual environme
 * **Student** **Login**
 * **Register**
 * **Update** **Information** 
-* Username/Password Retrieval
+* **Username/Password Retrieval**
 * **Student**/Faculty **search**
 * Textbook Search
 * Purchase Books
