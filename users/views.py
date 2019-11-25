@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_list_or_404
 from .models import UserProfile
 from .forms import SignUpForm, UserProfileForm, UserUpdateForm, \
     UserProfileUpdateForm, SearchForm
+from django.views.generic import ListView
 from django.http.response import Http404
 
 def index(request):
@@ -51,8 +52,8 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
-        p_form = UserProfileUpdateForm(request.POST, 
-                                       request.FILES, 
+        p_form = UserProfileUpdateForm(request.POST,
+                                       request.FILES,
                                        instance = request.user.userprofile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
@@ -62,13 +63,24 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance = request.user)
         p_form = UserProfileUpdateForm(instance = request.user.userprofile)
-    
+
     context={
-        'u_form' : u_form, 
+        'u_form' : u_form,
         'p_form' : p_form
     }
     return render(request, 'users/profile.html', context)
 
+def userhome(request):
+    context = {
+    'users' : UserProfile.objects.all()
+    }
+    print(context)
+    return render (request, 'users/allusers.html', context)
+
+class UserListView(ListView):
+    model = UserProfile
+    template_name = 'users/allusers.html'
+    context_object_name = 'users'
 
 @login_required
 def search_student(request):
@@ -83,7 +95,7 @@ def search_student(request):
     if 'first_name' in request.GET:
         form = SearchForm(request.GET)
         form.full_clean()
-        
+
         if form.cleaned_data['first_name']!='' and form.cleaned_data['last_name']!='' \
             and form.cleaned_data['department'] != '':
             f_name = form.cleaned_data['first_name']
@@ -122,11 +134,7 @@ def search_student(request):
                 raise Http404("No match is availabe for the given query %s %s %s" \
                     %(form.cleaned_data['first_name'],form.cleaned_data['last_name'],\
                         form.cleaned_data['department']))
-            
+
             print(results)
     return render(request,'users/search.html',{'form':form,\
             'results':results})
-
-
-
-

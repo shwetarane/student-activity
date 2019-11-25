@@ -10,7 +10,7 @@ role_choices = [
 	]
 department_choices = [
 		('','None'),
-		('Computer science','Computer science'),
+		('computer science','Computer Science'),
 		('Mechnical Engineering','Mechanical Engineering'),
 		('biotechnology','Biotechnology'),
 		('civilengineering','Civil Engineering'),
@@ -54,7 +54,7 @@ class UserUpdateForm(forms.ModelForm):
 class UserProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('address','city','state','zip_code', 'birth_date','image','department')
+		fields = ('address','city','state','zip_code', 'birth_date','image','department')	
 
 class SearchForm(forms.Form):
 	first_name = forms.CharField(max_length=30,required=False)

@@ -1,7 +1,9 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block titile %} Find People {% endblock %}
 {% block content %}
+  <!-- {% crispy form %} -->
     {%if results %}
         <h1> Search Results </h1>
         <table style="width:100%">
@@ -13,11 +15,11 @@
                 <th>E-mail</th>
                 <th>Image</th>
             </tr>
-            
+
                 {% for users in results %}
                 <tr>
                     <td>{{ users.user.first_name }}</td>
-                    <td>{{ users.user.last_name }}</td>    
+                    <td>{{ users.user.last_name }}</td>
                     <td>{{ users.department }}</td>
                     <td>{{ users.city }}</td>
                     <td>{{ users.user.email }}</td>
@@ -33,7 +35,8 @@
         <H1> People Search </H1>
         <form action="." method="get">
             {{ form.as_p }}
-            <input type="Submit" value="Search">
+
+            <input type="Submit" class="btn btn-primary" value="Search">
         </form>
     {% endif %}
 {% endblock %}

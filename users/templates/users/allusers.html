@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block content%}
+{% for user in users %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2">Name : {{ user }}</a>
+      <p>Department :{{ user.department}}</p>
+
+    </div>
+  </div>
+</article>
+{% endfor%}
+{% endblock content%}
