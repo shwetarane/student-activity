@@ -1,4 +1,4 @@
-*# Students Activity
+# Students Activity
 
 ## Getting Started
 
