@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load crispy_forms_tags %}
 {% block titile %} Find Faculty {% endblock %}
 {% block content %}
     {%if results %}
@@ -13,11 +13,11 @@
                 <th>E-mail</th>
                 <th>Image</th>
             </tr>
-            
+
                 {% for faculty in results %}
                 <tr>
                     <td>{{ faculty.faculty_fname }}</td>
-                    <td>{{ faculty.faculty_lname }}</td>    
+                    <td>{{ faculty.faculty_lname }}</td>
                     <td>{{ faculty.faculty_department }}</td>
                     <td>{{ faculty.faculty_phoneno }}</td>
                     <td>{{ faculty.faculty_email }}</td>
@@ -30,10 +30,11 @@
         </table>
         <u><B><p>  <a href="{% url "faculty:search_faculty" %}"> Seach Again</a></p></B></u>
     {% else %}
-        <H1> Faculty Search </H1>
+        <h2> Faculty Search </h2>
         <form action="." method="get">
+          <!-- {% crispy form %} -->
             {{ form.as_p }}
-            <input type="Submit" value="Search">
+            <input type="Submit" class="btn btn-primary" value="Search">
         </form>
     {% endif %}
 {% endblock %}
