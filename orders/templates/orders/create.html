@@ -1,16 +1,17 @@
 {% extends "blog/base.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %}
     Checkout
 {% endblock %}
 
 {% block content %}
-    <H1> Checkout</H1>
+
+    <!-- <H2> Checkout</H2> -->
 
     <div class="Order-Info">
-        <h3>Your Order </h3>
-        <h9> [10% discount apply only when the last order was greater than $200 ]</h9> 
-        <br> <br>
+        <h4>Your Order </h4>
+        <p> [10% discount apply if the last order was greater than $200 ]</p>
+        <h4>In your cart --</h4>
         <ul>
             {% for item in cart %}
                 <li>
@@ -19,15 +20,16 @@
                 </li>
             {% endfor %}
 </ul>
-        <br><center><B><p> Total : ${{ cart.get_total_price }}</p></center></B>
-        <br><center><B><p> 10% discount : ${{ cart.get_discount }}</p></center></B>
-
-        <br><center><B><p> Final Price : ${{ cart.get_discounted_price }}</p></center></B>
+        <br><p> Total amount : ${{ cart.get_total_price }}</p>
+        <p> 10% discount : ${{ cart.get_discount }}</p>
+        <B><p> Final Price : ${{ cart.get_discounted_price }}</p></center></B>
     </div>
-
+<br></br>
+    <h5>Please enter your details:</h5><hr></hr>
     <form action="." method="POST" class="order-form">
+      <!-- {% crispy form %} -->
         {{form.as_p}}
-        <p><input type="submit" value="Place Order"></p>
+        <p><input type="submit" class="btn btn-primary" value="Place Order"></p>
         {%csrf_token%}
     </form>
 {% endblock %}
