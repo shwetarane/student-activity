@@ -83,6 +83,12 @@
                 <a class="nav-item nav-link" href="{%  url 'users:roommateFind' %}">Find Room-mate</a>
                 <a class="nav-item nav-link" href="{%  url 'books:book_lists' %}">Books Store</a>
                 <a class="nav-item nav-link" href="{%  url 'books:book_search' %}">Books search</a> -->
+                <div class="dropdown">
+                  <a class="nav-item nav-link" href="{%  url 'cart:cart_detail' %}">My Cart</button></href>
+                  <div class="dropdown-content">
+                    <a href="{%  url 'orders:orders_history' %}">My Orders</a>
+                  </div>
+                </div>
                 <a class="nav-item nav-link" href="{%  url 'logout' %}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{%  url 'login' %}">Login</a>
