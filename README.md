@@ -64,9 +64,9 @@ Also make sure, to import Django in the corresponding python & virtual environme
 * **Update** **Information** 
 * **Username/Password Retrieval**
 * **Student**/Faculty **search**
-* Textbook Search
+* **Textbook Search**
 * Purchase Books
-* Find a Roommate
+* **Find a Roommate**
 * Meal Plan
 * Purchase Bus Tickets
 * Sport Activities and Parties
