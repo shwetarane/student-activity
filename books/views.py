@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage,\
 from django.contrib.auth.decorators import login_required
 from .forms import BookSearchForm
 from django.http.response import Http404
+from cart.forms import CartAddProductForm
 
 # Create your views here.
 @login_required
@@ -27,8 +28,10 @@ def book_list(request):
 @login_required
 def book_detail(request, slug=None):
     book = get_object_or_404(Book,slug=slug)
+    cart_book_form = CartAddProductForm()
     return render(request,'books/book_detail.html',
                 {'book':book,
+                'cart_book_form':cart_book_form
                 })
 @login_required
 def book_search(request):

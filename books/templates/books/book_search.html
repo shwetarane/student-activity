@@ -5,6 +5,7 @@
     {%if results %}
         <h1> Search Results </h1>
         <table style="width:100%">
+            <thead bgcolor="#008CBA">
             <tr>
                 <th>Image</th>
                 <th>Book Name</th>
@@ -16,6 +17,7 @@
                 <th>BookStore name</th>
                 <th>More details</th>
             </tr>
+            </thead>
             
                 {% for book in results %}
                 <tr>

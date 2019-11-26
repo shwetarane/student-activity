@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <style type="text/css">
+            #container { /*Your main page */
+            width: 900px;
+            height: 900px;
+            margin-left: auto;
+            margin-right: auto;
+                
+            }
+            #Box   {
+            width: 200px;
+            height: 200px;
+            }
+            img   {
+            display: inline-block;
+            margin: 10px 10px;
+            width: 200px;
+            height: 200px;
+            padding: 10px;  /*Lets give these guy's some padding*/
+            padding-top: 10px;
+            background-color:#777474;
+            padding:10px;
+            border:2px solid #000000;
+            }
+            .right {
+                float: right;
+                width: 200px;
+                background-color: rgb(249, 249, 249);
+            }
+</style>
+</head>
+<body>
+
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}
+My Orders  
+{% endblock %}
+{% block content %}
+    <div id="main" class="book-list">
+    <h1>Order History</h1> 
+    <B><center>{% include "pagination.html" with page=orders %} </B></center>
+    <table style="width:100%">
+        <thead bgcolor="#008CBA">
+        <tr>
+            <th> Image</th>
+            <th> Book Name</th>
+            <th> Price</th>
+            <th> Quantity </th>
+            <th> Ordered date</th>
+        </tr>
+        </thead>
+
+    {% for order in orders %}
+        <tr>
+            <td> <img src="{% if order.book.image %} {{ order.book.image.url }} {% else %}{% static "img/default.jpg" %} {% endif %}  "></td>
+            <td><a href="{% url "books:book_details" order.book.slug %}">
+                    {{ order.book.book_name }}</td>
+            <td>${{ order.price }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.order.created }}</td>
+
+        </tr>
+    
+    {% endfor %}
+    </table>
+    {% if orders|length == 0 %}
+        <br>
+        <Center><h2> You haven't placed any orders before !!!</h2></Center>
+    {% endif %}
+
+    </div>
+    <br>
+    <B><center>{% include "pagination.html" with page=orders %} </center></B>
+    <br>
+
+    <a href="{% url "books:book_lists" %}">
+        <B><center>Go to Books Home page</center></B>
+    </a>
+    <br>
+{% endblock %}

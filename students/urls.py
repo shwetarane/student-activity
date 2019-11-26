@@ -51,6 +51,9 @@ urlpatterns = [
     path('', include('blog.urls')),
     # Divya added this
     path('users/',include('users.urls',namespace='users')),
+    path('cart/',include('cart.urls',namespace='cart')),
+    path('orders/',include('orders.urls',namespace='orders')),
+    path('payment/',include('payment.urls',namespace='payment')),
     path('books/',include('books.urls',namespace='books')),
     path('faculty/',include('faculty.urls',namespace='faculty')),
 ]
