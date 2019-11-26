@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block content %}
+    <H1> Checkout</H1>
+
+    <div class="Order-Info">
+        <h3>Your Order </h3>
+        <h9> [10% discount apply only when the last order was greater than $200 ]</h9> 
+        <br> <br>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{item.quantity }} x {{item.book}} =
+                    <span> <B><i> $ {{item.total_price }}</span></i></B>
+                </li>
+            {% endfor %}
+</ul>
+        <br><center><B><p> Total : ${{ cart.get_total_price }}</p></center></B>
+        <br><center><B><p> 10% discount : ${{ cart.get_discount }}</p></center></B>
+
+        <br><center><B><p> Final Price : ${{ cart.get_discounted_price }}</p></center></B>
+    </div>
+
+    <form action="." method="POST" class="order-form">
+        {{form.as_p}}
+        <p><input type="submit" value="Place Order"></p>
+        {%csrf_token%}
+    </form>
+{% endblock %}

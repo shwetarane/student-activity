@@ -1,4 +1,4 @@
-# Students Activity
+*# Students Activity
 
 ## Getting Started
 
@@ -18,6 +18,11 @@
 
   ```bash
   pip install django
+  ```
+# Payment module pre-requisite 
+```bash
+  pip install braintree // Needed for Payment Module
+
   ```
 
 ## Setting up the project
@@ -68,4 +73,19 @@ Also make sure, to import Django in the corresponding python & virtual environme
 * Election polls
 
 
+## Credit Card Detail
+* 4111 1111 1111 1111 
+* CVV - 123
+* Date - 12/24
 
+## Database user details
+
+* username = admin; password = admin; [this is the only superuser we should keep initially]
+* username = student; password = admin@123
+
+[Note : if you have more than one user with superuser and staff privileges it might create migrations issue.
+So just have only one super user  - will fix this issue soon]
+
+## Database - sqlite file.
+
+* Please don't checkin your sqlite file. Cleaned up all the users so that we can avoid few migration issue related to users mentioned above.

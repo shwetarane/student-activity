@@ -21,6 +21,11 @@
             <span style="margin-left:4em"><B> ISBN Number : </B>{{book.isbn_number}}</span> <br>
             <span style="margin-left:4em"><B> Quantity Available : </B>{{book.quantity}}</span> <br>
             <span style="margin-left:4em"><B> Price : </B>{{book.price}}</span> <br>
+            <form action ="{% url "cart:cart_add" book.id %}" method="post">
+                <span style="margin-left:4em">{{ cart_book_form }}</span>
+                {% csrf_token %}
+                <span style="margin-left:4em"><B></B><input type="submit" value="Add to cart"></span></B><br>
+            </form>    
             
         </div>
     </div>

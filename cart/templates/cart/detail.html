@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+
+</style>
+
+
+{% block title %}
+    Your Cart
+{% endblock %}
+
+{% block content %}
+    <h1> Shopping Cart</h1>
+    <table width="1000" cellspacing="200" cellpadding="100">
+        <thead bgcolor="#008CBA">
+            <tr>
+                <th>Image</th>
+                <th>Book</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                {% with book=item.book %}
+                    <tr>
+                        <td>
+                            <a href="{% url "books:book_details" book.slug %}">
+                                    <img src="{{ book.image.url }}"></a>
+                        </td>
+                        <td >{{ book.book_name }}</td>
+                        <td>
+                            <form action="{% url "cart:cart_add" book.id %}" method="post">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.update }}
+                                <input type="submit" values="Update">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td ><a href="{% url "cart:cart_remove" book.id %}"> Remove from Cart</a>
+                            </td>
+                        <td class="num">${{ item.price }}</td>
+                        <td class="num">${{ item.total_price }}</td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+
+
+            <tr class="total">
+                <td>Total</td>
+                <td colspan="4"></td>
+                
+                <td class="num"><B>${{ cart.get_total_price }}</B></td>
+            </tr>
+
+            
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "books:book_lists" %}" class="button light"> <B>Continue shopping</a></B>
+        <br><a href="{% url "orders:order_create" %}" class="button"><B>Checkout</B></a>
+        <br>
+        <br>
+    </p>
+{% endblock %}
