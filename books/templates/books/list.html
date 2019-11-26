@@ -7,7 +7,7 @@
             height: 900px;
             margin-left: auto;
             margin-right: auto;
-                
+
             }
             #Box   {
             width: 200px;
@@ -35,38 +35,35 @@
 
 {% extends "blog/base.html" %}
 {% load static %}
-
 {% block title %}
-Books 
+Books
 {% endblock %}
 {% block content %}
     <div id="main" class="book-list">
-    <h1>Book Store</h1>
+    <h2>Book Store</h2>
     <div class="right">
         <a href= "{% url "books:book_search" %}">
-            <B>Search by Books</B>
+            <B>Search Books</B>
         </a>
     </div>
+
     <B><center>{% include "pagination.html" with page=books %} </B></center>
+
     {% for book in books %}
-        <div class="row">
-                <figure>
+      		<article class="media content-section">
                 <img src="{% if book.image %} {{ book.image.url }} {% else %}{% static "img/default.jpg" %} {% endif %}  ">
-                <figcaption><a href="{% url "books:book_details" book.slug %}">
-                    {{ book.book_name }}
-                </figcaption></a>
-                <figcaption>Price : ${{ book.price }}</figcaption>
-                </figure>
-                <div class="column">
-                    {{ book.book_description }}
-                </div>
-        </div>
+                <div class="media-body">
+          				<div class="article-metadata">
+          					<a class="mr-2" href="{% url "books:book_details" book.slug %}">  {{ book.book_name }}</a>
+                    <small class="text-muted">Price : ${{ book.price }}</small>
+          			</div>
+                <p class="article-content">  {{ book.book_description }}</p>
+        </article>
     {% endfor %}
     </div>
     <br>
     <B><center>{% include "pagination.html" with page=books %} </center></B>
     <br>
-
     <a href="{% url "books:book_lists" %}">
         <B><center>Go to Books Home page</center></B>
     </a>

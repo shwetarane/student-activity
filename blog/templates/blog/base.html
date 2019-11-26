@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    
+
     {% if title %}
       <title>Student Activities - {{ title }}</title>
     {% else %}
@@ -114,8 +114,8 @@
                   <a class="list-group-item list-group-item-light" href="{%  url 'users:student_search' %}">Student Search</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'faculty:search_faculty' %}">Faculty Search</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'users:roommateFind' %}">Find Room-mate</a>
-                  <a class="list-group-item list-group-item-light" href="{%  url 'books:book_search' %}">Books Store</a>
-                  <a class="list-group-item list-group-item-light" href="{%  url 'books:book_search' %}">Books search</a>
+                  <a class="list-group-item list-group-item-light" href="{%  url 'books:book_search' %}">Books Search</a>
+                  <a class="list-group-item list-group-item-light" href="{%  url 'books:book_lists' %}">Books Store</a>
                 </ul>
               </p>
             </div>
@@ -131,6 +131,6 @@
         {% block content2 %}
         {% endblock %}
       </div>
-    
+
     </body>
   </html>

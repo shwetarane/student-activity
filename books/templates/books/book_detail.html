@@ -1,19 +1,15 @@
 {% extends "blog/base.html" %}
-
 {% load static %}
-
 {% block title %}{{ book.book_name }}{% endblock %}
-
 {% block content %}
 
     <h1> {{ book.book_name }}</h1>
     <p class="date">
-        Published by {{ book.publisher }} 
+        Published by {{ book.publisher }}
     </p>
-    
     <div class="row">
         <img src="{% if book.image %} {{ book.image.url }} {% else %}{% static "img/default.jpg" %} {% endif %}  ">
-        
+
         <div class="column" >
             <span style="margin-left:4em"><B> Author : </B>{{book.book_author}}</span> <br>
             <span style="margin-left:4em"><B> Published : </B>{{book.published_date}}</span> <br>
@@ -25,8 +21,8 @@
                 <span style="margin-left:4em">{{ cart_book_form }}</span>
                 {% csrf_token %}
                 <span style="margin-left:4em"><B></B><input type="submit" value="Add to cart"></span></B><br>
-            </form>    
-            
+            </form>
+
         </div>
     </div>
     <br>

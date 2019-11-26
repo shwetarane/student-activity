@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load crispy_forms_tags %}
 {% block titile %} Find Book {% endblock %}
 {% block content %}
     {%if results %}
@@ -18,12 +18,12 @@
                 <th>More details</th>
             </tr>
             </thead>
-            
+
                 {% for book in results %}
                 <tr>
                     <td><img src="{{ book.image.url }}"> </td>
                     <td>{{ book.book_name }}</td>
-                    <td>{{ book.book_author }}</td>    
+                    <td>{{ book.book_author }}</td>
                     <td>{{ book.publisher }}</td>
                     <td>{{ book.isbn_number }}</td>
                     <td>{{ book.available_in_library }}</td>
@@ -37,10 +37,12 @@
         </table>
         <u><B><p>  <a href="{% url "books:book_search" %}"> Seach Again</a></p></B></u>
     {% else %}
-        <H1> Book Search </H1>
+    <!-- {% crispy form %} -->
+        <h2> Book Search </h2>
         <form action="." method="get">
+
             {{ form.as_p }}
-            <input type="Submit" value="Search">
+            <input type="Submit" class="btn btn-primary" value="Search">
         </form>
     {% endif %}
 {% endblock %}
