@@ -176,8 +176,3 @@ def roommateFind(request):
                                        form.cleaned_data['to_date']) )
             print (results)
     return render ( request, 'users/roommatesearch.html', {'form': form, 'results': results} )
-
-
-
-
-

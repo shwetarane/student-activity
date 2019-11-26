@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="content-section">
+    <div class = "media">
+        <img alt="user image" class = "rounded-circle account-img" src = "{{ user.userprofile.image.url }}"></img>
+        <div class ="media-body">
+            <h3>{{ user.username }}</h3>
+            <h4>{{ user.email }}</h4>
+            <h4>{{ user.city }}, {{ user.state }}, {{ user.zip }}</h4>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
