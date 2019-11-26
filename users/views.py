@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_list_or_404
 from .models import UserProfile
 from .forms import SignUpForm, UserProfileForm, UserUpdateForm, \
-    UserProfileUpdateForm, SearchForm
+    UserProfileUpdateForm, SearchForm, RoommateSearchForm
 from django.views.generic import ListView
 from django.http.response import Http404
 
@@ -87,7 +87,6 @@ def search_student(request):
     '''
     Seach the students by first_name, last_name and department
     '''
-
     form = SearchForm()
     f_name = l_name = dept = None
     results = []
@@ -138,3 +137,47 @@ def search_student(request):
             print(results)
     return render(request,'users/search.html',{'form':form,\
             'results':results})
+
+@login_required
+def roommateFind(request):
+
+    form = RoommateSearchForm()
+    gen = f_date = t_date = None
+    results = []
+    if 'gender' in request.GET:
+        form = RoommateSearchForm(request.GET)
+        form.full_clean()
+
+
+        if form.cleaned_data['gender'] != '' and form.cleaned_data['from_date']!='' \
+            and form.cleaned_data['to_date'] != '':
+            gen = form.cleaned_data['gender']
+            f_date = form.cleaned_data['from_date']
+            t_date = form.cleaned_data['to_date']
+            r_price = form.cleaned_data['price']
+            results = UserProfile.objects.filter (gender=gen, \
+                                       from_date__gte = f_date, to_date__lte = t_date, price__lte =r_price)
+
+        else:
+            try:
+                if form.cleaned_data['gender'] != '' and form.cleaned_data['from_date'] != '' and form.cleaned_data['to_date'] != '':
+                    results = get_list_or_404 ( UserProfile, gender= form.cleaned_data['gender'], from_date__gte= \
+                        form.cleaned_data['from_date'], to_date__lte = form.cleaned_data['to_date'] )
+                elif form.cleaned_data['from_date'] != '' and form.cleaned_data['to_date'] != '' and \
+                         form.cleaned_data['price'] != '':
+                    results = get_list_or_404 ( UserProfile, from_date__gte= form.cleaned_data['from_date'], to_date__lte = \
+                        form.cleaned_data['to_date'], price__lte = form.cleaned_data['price'] )
+                elif form.cleaned_data['from_date'] != '' and form.cleaned_data['to_date'] != '':
+                    results = get_list_or_404 ( UserProfile, from_date= \
+                        form.cleaned_data['from_date'], to_date = form.cleaned_data['from_date'] )
+            except Http404:
+                    raise Http404 ( "No match is availabe for the given query %s %s %s" \
+                                    % (form.cleaned_data['gender'], form.cleaned_data['from_date'], \
+                                       form.cleaned_data['to_date']) )
+            print (results)
+    return render ( request, 'users/roommatesearch.html', {'form': form, 'results': results} )
+
+
+
+
+

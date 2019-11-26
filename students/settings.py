@@ -150,3 +150,22 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = 'studentactivities19@gmail.com'
 EMAIL_HOST_PASSWORD = '$pring2019'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

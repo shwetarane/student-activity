@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+
+{% block titile %} RoomMate Search {% endblock %}
+{% block content %}
+    {%if results %}
+        <h1> Search Results </h1>
+        <table style="width:100%">
+            <tr>
+                <th>gender</th>
+                <th>from-date</th>
+                <th>to-date</th>
+                <th>price</th>
+                <th>Student Name</th>
+                <th>Contact Email</th>
+
+            </tr>
+
+                {% for users in results %}
+                <tr>
+                    <td>{{ users.gender }}</td>
+                    <td>{{ users.from_date }}</td>
+                    <td>{{ users.to_date }}</td>
+                    <td>{{ users.price }}</td>
+                    <td>{{ users.user.first_name }} {{ users.user.last_name }}</td>
+                    <td>{{ users.user.email }}</td>
+
+                {% empty %}
+                    <td><p> There are no results for your query </p></td>
+                {% endfor %}
+            </tr>
+        </table>
+        <u><B><p>  <a href="{% url "users:roommateFind" %}"> Search Again</a></p></B></u>
+    {% else %}
+        <H1> Find a Roommate</H1>
+        <form action="." method="get">
+            {{ form.as_p }}
+            <input type="Submit" value="Search">
+        </form>
+    {% endif %}
+{% endblock %}

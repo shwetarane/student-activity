@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.utils import timezone
 
 # Created by Divya
 '''
@@ -24,6 +25,10 @@ class UserProfile(models.Model):
     zip_code = models.IntegerField(default=78758)
     birth_date = models.DateField(null=True, blank=True)
     department = models.CharField(max_length=20,null=False,blank=False)
+    from_date = models.DateField(default=timezone.now().date())
+    to_date = models.DateField(default=timezone.now().date())
+    price= models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    gender = models.CharField(max_length=10, default='FEMALE')
     image = models.ImageField(default='default.jpg', upload_to='profile_pictures')
 
     # Computer Science manager
