@@ -18,8 +18,8 @@ department_choices = [
 		('chemicalengineering','Chemical Engineering')
 	]
 
-gender_choices = [ ('', 'None'), ('MALE','MALE'),
-				   ('FEMALE','FEMALE')]
+gender_choices = [ ('', 'None'), ('Male','MALE'),
+				   ('Female','FEMALE')]
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField()
@@ -57,7 +57,7 @@ class UserUpdateForm(forms.ModelForm):
 class UserProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('address','city','state','zip_code', 'birth_date','image','department')	
+		fields = ('address','city','state','zip_code', 'birth_date','image','department')
 
 class SearchForm(forms.Form):
 	first_name = forms.CharField(max_length=30,required=False)
@@ -71,5 +71,3 @@ class RoommateSearchForm(forms.Form):
 	from_date = forms.DateField (label='Move in Date', widget=forms.SelectDateWidget)
 	to_date = forms.DateField (label='Move out Date', widget=forms.SelectDateWidget)
 	price = forms.DecimalField(label='Price Within')
-	
-	

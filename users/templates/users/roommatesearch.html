@@ -1,20 +1,23 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 
-{% block titile %} RoomMate Search {% endblock %}
+{% block titile %} Room-mate Finder {% endblock %}
 {% block content %}
+  <!-- {% crispy form %} -->
     {%if results %}
-        <h1> Search Results </h1>
-        <table style="width:100%">
+        <h2> Search Results </h2>
+        <table class="table table-bordered" style="width:100%">
+          <thead class="thead-dark">
             <tr>
-                <th>gender</th>
-                <th>from-date</th>
-                <th>to-date</th>
-                <th>price</th>
-                <th>Student Name</th>
-                <th>Contact Email</th>
-
+                <th scope="col">gender</th>
+                <th scope="col">from-date</th>
+                <th scope="col">to-date</th>
+                <th scope="col">price</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Contact Email</th>
             </tr>
-
+            </thead>
+            <tbody>
                 {% for users in results %}
                 <tr>
                     <td>{{ users.gender }}</td>
@@ -28,13 +31,15 @@
                     <td><p> There are no results for your query </p></td>
                 {% endfor %}
             </tr>
+            </tbody>
         </table>
         <u><B><p>  <a href="{% url "users:roommateFind" %}"> Search Again</a></p></B></u>
     {% else %}
-        <H1> Find a Roommate</H1>
-        <form action="." method="get">
+        <h3> Looking for a Room-mate?</h3>
+        <form action="." method="get" class="form-control-sm">
+            <!-- {% crispy form %} -->
             {{ form.as_p }}
-            <input type="Submit" value="Search">
+            <input type="Submit" class="btn btn-primary" value="Search">
         </form>
     {% endif %}
 {% endblock %}
