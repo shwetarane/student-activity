@@ -1,7 +1,23 @@
 {% extends 'blog/base.html' %}
 {% block content%}
-<h2>Sports and Campus Events</h2>
+<section class="container">
 
+<div>
+<h2>Sports and Campus Events</h2>
+<span><a href="{% url 'find-activity' %}" class="align-right">Filter on-Campus activities</a></span>
+</div>
+<!-- <form class="form-inline">
+	<label for="example-date-input" class="col-2 col-form-label">Search Activities</label>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <input class="form-control" type="date" value="" id="example-date-input">
+  </div>
+  <label class="sr-only" for="inlineFormInputGroup">to</label>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <input class="form-control" type="date" value="" id="example-date-input">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
 	{% for post in posts %}
 		<article class="media content-section">
 			<img class="rounded-circle article-img" src="{{ post.author.userprofile.image.url }}">
@@ -10,11 +26,12 @@
 					<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
 					<small class="text-muted">{{ post.date_posted |date:"F d, Y"}}</small>
 				</div>
-				<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+				<h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
 				<p class="article-content">{{ post.content }}</p>
 			</div>
 		</article>
 	{% endfor%}
+</section>
 	{% if is_paginated %}
 		{% if page_obj.has_previous %}
 			<a class="btn btn-outline-info mb-4" href="?page=1">First</a>

@@ -33,12 +33,12 @@ def book_detail(request, slug=None):
                 {'book':book,
                 'cart_book_form':cart_book_form
                 })
-@login_required
+
 def book_search(request):
 
     form = BookSearchForm()
     a_name = b_name = isbn = None
-    results = []   
+    results = []
     if 'book_name' in request.GET:
         form = BookSearchForm(request.GET)
         form.full_clean()

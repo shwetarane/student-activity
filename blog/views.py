@@ -2,14 +2,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin,  UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
-	ListView, 
-	DetailView, 
+	ListView,
+	DetailView,
 	CreateView,
 	UpdateView,
 	DeleteView,
 	)
+from .filters import PostFilter
+from .forms import FindActivityForm
 from .models import Post
 
+import datetime
 
 # Create your views here.
 def home(request):
@@ -23,8 +26,21 @@ class PostListView(ListView):
 	template_name = 'blog/home.html' #<app>/<model>_<viewtype>.html
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 3
+	paginate_by = 5
 
+def FindPosts(request):
+	# start_date = datetime.date(2019, 11, 27)
+	# end_date = datetime.date(2019, 12, 28)
+	post_list = Post.objects.all()
+	post_filter = PostFilter(request.GET, queryset = post_list)
+	return render(request, 'blog/activities.html', {'filter': post_filter})
+
+# class FindPostBetween(ListView):
+# 	model = Post
+# 	template_name = 'blog/activities.html'
+# 	context_object_name = 'posts_bet'
+
+	# ordering = ['-date_posted']
 
 class UserPostListView(ListView):
 	model = Post
@@ -69,7 +85,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
 	success_url = '/'
-	
+
 	def test_func(self):
 		post = self.get_object()
 		if self.request.user == post.author:

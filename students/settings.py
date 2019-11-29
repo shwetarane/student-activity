@@ -28,17 +28,17 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Braintree Payment configuration 
+# Braintree Payment configuration
 
 BRAINTREE_MERCHANT_ID = '9gyqc4z3ss8w8rv2'
-BRAINTREE_PUBLIC_KEY = '86jjtvmy4d5yrqxj' 
+BRAINTREE_PUBLIC_KEY = '86jjtvmy4d5yrqxj'
 BRAINTREE_PRIVATE_KEY = '44b7682d57d8d9527552cec921513604'
 
 from braintree import Configuration, Environment
-Configuration.configure( 
-    Environment.Sandbox, 
-    BRAINTREE_MERCHANT_ID, 
-    BRAINTREE_PUBLIC_KEY, 
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
 
@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'faculty.apps.FacultyConfig',
     'crispy_forms',
+
+    'widget_tweaks',
 
     'django.contrib.admin',
     'django.contrib.auth',

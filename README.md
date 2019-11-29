@@ -7,7 +7,7 @@
 * (optional, but recommended) Install virtual environment, [https://virtualenvwrapper.readthedocs.io/en/latest/install.html](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) -> For this step, make sure you create the following directory before update the bash file. For MAC Users, its bash_profile in your home directory.
 ```bash
   mkdir $HOME/.virtualenvs
- ```
+```
 * Create virtual environment for your project, say dev1
 
   ```bash
@@ -23,9 +23,18 @@
 ```bash
   pip install braintree // Needed for Payment Module
 
-  ```
+```
+
+### Other dependencies
+
+---------------------------------------------------------------------
+
+```pip install django-widget-tweaks```
+
+```pip install django-filter``` // to filter posts
 
 ## Setting up the project
+
 Needs [git](https://git-scm.com/download/win) installed and set-up on your machine.  
 In Terminal, ensure virtual environment is activated, where you want the project,
 
@@ -63,13 +72,13 @@ Also make sure, to import Django in the corresponding python & virtual environme
 * **Register**
 * **Update** **Information** 
 * **Username/Password Retrieval**
-* **Student**/Faculty **search**
+* **Student/Faculty search**
 * **Textbook Search**
-* Purchase Books
+* **Purchase Books**
 * **Find a Roommate**
 * Meal Plan
 * Purchase Bus Tickets
-* Sport Activities and Parties
+* **Sport Activities and Parties**
 * Election polls
 
 
