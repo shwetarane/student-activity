@@ -84,11 +84,19 @@
                 <a class="nav-item nav-link" href="{%  url 'books:book_lists' %}">Books Store</a>
                 <a class="nav-item nav-link" href="{%  url 'books:book_search' %}">Books search</a> -->
                 <div class="dropdown">
-                  <a class="nav-item nav-link" href="{%  url 'cart:cart_detail' %}">My Cart</button></href>
+                  <a class="nav-item nav-link" href="{%  url 'cart:cart_detail' %}"> Book Cart</button></href>
                   <div class="dropdown-content">
-                    <a href="{%  url 'orders:orders_history' %}">My Orders</a>
+                    <a href="{%  url 'orders:orders_history' %}">Book Orders</a>
                   </div>
                 </div>
+                <div class="dropdown">
+                    <a class="nav-item nav-link" href="{%  url 'cart:ticket_cart_detail' %}"> Tickets Cart</button></href>
+                    <div class="dropdown-content">
+                      <a href="{%  url 'orders:bus_orders_history' %}">Ticket Orders</a>
+                    </div>
+                  </div>
+                
+
                 <a class="nav-item nav-link" href="{%  url 'logout' %}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{%  url 'login' %}">Login</a>
@@ -122,6 +130,7 @@
                   <a class="list-group-item list-group-item-light" href="{%  url 'users:roommateFind' %}">Find Room-mate</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'books:book_search' %}">Books Search</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'books:book_lists' %}">Books Store</a>
+                  <a class="list-group-item list-group-item-light" href="{%  url 'bus:get_tickets' %}">Bus Tickets</a>
                 </ul>
               </p>
             </div>

@@ -1,14 +1,15 @@
 from django.shortcuts import render,redirect, reverse
-from .models import OrderItem, Orders
-from .forms import OrderCreateForm
+from .models import OrderItem, Orders, BusOrderItem
+from .forms import OrderCreateForm, BusOrderCreateForm
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
+from decimal import Decimal
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 @login_required
 def order_create(request):
-    cart = Cart(request)
+    cart = Cart(request,'cart')
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
@@ -45,9 +46,7 @@ def order_create(request):
 def orders_history(request):
 
     orders = OrderItem.objects.filter(user=request.user)
-    print('orders',orders)
-    for i in orders:
-            print ("Orders %r \n",i.book.slug)
+    
     paginator = Paginator(orders,10)
     page = request.GET.get('page')
     try:
@@ -60,4 +59,47 @@ def orders_history(request):
             {
                 'orders':orders
             })
+@login_required
+def bus_order_create(request):
+    cart = Cart(request,'ticket')
+    if request.method == 'POST':
+        form = BusOrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            total_price = 0
+            for item in cart:
+                BusOrderItem.objects.create(user=request.user,
+                                    order=order,
+                                    ticket=item['book'],
+                                    price=item['price'],
+                                    quantity=item['quantity'])
+                total_price += item['price'] * item['quantity']
+            order.total_price = cart.get_ticket_price()
+            order = form.save()
+            cart.bus_cart_clear()
+            request.session['order_id'] = order.id
+            return redirect(reverse('payment:bus_payment_process'))
+            #return render(request,'orders/created.html',
+            #           {'order':order})
+    else:
+        form = BusOrderCreateForm()
+    return render(request,'orders/bus_order_create.html',
+                    {'cart':cart,'form':form})
+
+@login_required
+def bus_orders_history(request):
+
+    orders = BusOrderItem.objects.filter(user=request.user)
     
+    paginator = Paginator(orders,10)
+    page = request.GET.get('page')
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+    return render(request, 'orders/tickets.html',\
+            {
+                'orders':orders
+            })

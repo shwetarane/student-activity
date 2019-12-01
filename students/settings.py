@@ -50,10 +50,12 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'books.apps.BooksConfig',
+    'bus.apps.BusConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
     'faculty.apps.FacultyConfig',
+
     'crispy_forms',
 
     'widget_tweaks',
@@ -118,6 +120,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -175,6 +178,7 @@ EMAIL_HOST_PASSWORD = '$pring2019'
 # Store the cart in the user Session id
 
 CART_SESSION_ID = 'cart'
+CART_SESSION_ID_TICKET = 'ticket'
 
 LOGGING = {
     'version': 1,

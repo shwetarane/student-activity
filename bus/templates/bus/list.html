@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    
+</style>
+
+
+{% block title %}
+    Bus Tickets
+{% endblock %}
+
+{% block content %}
+    <h2> Bus Tickets</h2>
+
+    {% for item in tickets %}
+        <div class="row">
+
+            <div class="column" >
+                <span style="margin-left:4em"><B> <h4>Ticket Type : </B>{{item.ticket_type}}</h4></span> <br>
+                <span style="margin-left:4em"><B> Source : </B>{{item.source}}</span> <br>
+                <span style="margin-left:4em"><B> Destination : </B>{{item.destination}}</span> <br>
+                <span style="margin-left:4em"><B> Price : </B>{{item.price}}</span> <br>
+                <form action ="{% url "cart:cart_add_ticket" item.id %}" method="post">
+                    <span style="margin-left:4em">{{ cart_form }}</span>
+                    {% csrf_token %}
+                    <span style="margin-left:4em"><B></B><input type="submit" value="Add to cart"></span></B><br>
+                </form>
+                <br>
+                <hr>
+            </div>
+                
+            </div>            
+    {% endfor %}
+
+{% endblock %}

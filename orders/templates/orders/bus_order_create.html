@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block content %}
+
+    <!-- <H2> Checkout</H2> -->
+
+    <div class="Order-Info">
+        <h4>Your Bust Ticket Order </h4>
+        
+        <h4>In your cart </h4>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{item.quantity }} x {{item.book}} =
+                    <span> <B><i> $ {{item.total_price }}</span></i></B>
+                </li>
+            {% endfor %}
+</ul>
+        <br><p> <B>Total amount : ${{ cart.get_total_price }}</p></B>
+
+    </div>
+<br></br>
+    <h5>Please enter your details:</h5><hr></hr>
+    <form action="." method="POST" class="order-form">
+      <!-- {% crispy form %} -->
+        {{form.as_p}}
+        <p><input type="submit" class="btn btn-primary" value="Place Order"></p>
+        {%csrf_token%}
+    </form>
+{% endblock %}

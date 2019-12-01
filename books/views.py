@@ -34,6 +34,7 @@ def book_detail(request, slug=None):
                 'cart_book_form':cart_book_form
                 })
 
+@login_required
 def book_search(request):
 
     form = BookSearchForm()

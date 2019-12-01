@@ -2,16 +2,18 @@ from decimal import Decimal
 from django.conf import settings
 from books.models import Book
 from orders.models import Orders
+from bus.models import Ticket
 import decimal
 
 class Cart(object):
 
-    def __init__(self,request):
+    def __init__(self,request,session_id):
         self.session = request.session
-        cart = self.session.get(settings.CART_SESSION_ID)
+        cart = self.session.get(session_id)
+        self.which_session = session_id
         if not cart:
             # Saving an empty cart in the session #1st time
-            cart = self.session[settings.CART_SESSION_ID] = {}
+            cart = self.session[session_id] = {}
         self.cart = cart
         
     def add(self,book_obj,quantity=1,update_quantity=False):
@@ -39,12 +41,15 @@ class Cart(object):
     def __iter__(self):
 
         book_ids = self.cart.keys()
-        books = Book.objects.filter(id__in=book_ids)
+        
+        if self.which_session == 'cart':
+            books = Book.objects.filter(id__in=book_ids)
+        elif self.which_session == 'ticket':
+            books = Ticket.objects.filter(id__in=book_ids)
 
         cart = self.cart.copy()
         for book in books:
             cart[str(book.id)]['book'] = book
-
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
@@ -76,9 +81,22 @@ class Cart(object):
         return round(Decimal(float(total_price)),2)
 
     def get_total_price(self):
+
+        return round(sum(Decimal(float(item['price']) * item['quantity']) for item in self.cart.values()),2)
+
+    def get_ticket_price(self):
         return round(sum(Decimal(float(item['price']) * item['quantity']) for item in self.cart.values()),2)
 
     def clear(self):
-
-        del self.session[settings.CART_SESSION_ID]
+        del self.session[self.which_session]
         self.save()
+
+    def bus_cart_clear(self):
+        del self.session[self.which_session]
+        self.save()
+
+
+
+
+
+

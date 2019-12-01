@@ -1,0 +1,62 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+
+</style>
+
+
+{% block title %}
+    Your Cart
+{% endblock %}
+
+{% block content %}
+    <h2> Shopping Cart</h2>
+    <table width="100%" cellspacing="200" cellpadding="100">
+        <thead bgcolor="#008CBA">
+            <tr>
+                    <th>Ticket type</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th>Unit Price</th>
+                    <th>Total </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                    <tr>
+                        <td >{{ item.book }}</td>
+                        
+                        <td>
+                            <form action="{% url "cart:cart_add_ticket" item.book.id %}" method="post">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.update }}
+                                <input type="submit" values="Update">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td ><a href="{% url "cart:ticket_cart_remove" item.book.id %}"> Remove from Cart</a>
+                            </td>
+                        <td class="num">${{ item.price }}</td>
+                        <td class="num">${{ item.total_price }}</td>
+                    </tr>
+            {% endfor %}
+
+
+            <tr class="total">
+                <td>Total</td>
+                <td colspan="3"></td>
+
+                <td class="num"><B>${{ cart.get_total_price }}</B></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <p class="text-right">
+        <br><button class="btn btn-default"><a href="{% url "orders:bus_order_create" %}" class="button">Checkout</a></button>
+        <br>
+        <br>
+    </p>
+{% endblock %}
