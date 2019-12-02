@@ -1,9 +1,35 @@
-<h1>{{ question.question_text }}</h1>
+
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    
+</style>
+{% block title %}
+   <h1> Results </h1>
+{% endblock %}
+<h3>{{ question.question_text }}</h3>
+
+{% load static %}
+
 
 <ul>
 {% for choice in question.choice_set.all %}
     <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    
 {% endfor %}
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}"></a>
+
+
+<iframe src="http://localhost:8000/polls/1/results/vote_graph.html" width="1000" height="1000" allowTransparency="true" scrolling="no" frameborder="0" >
+    </iframe>
+

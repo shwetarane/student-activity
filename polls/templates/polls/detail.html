@@ -1,5 +1,18 @@
-<h1>{{ question.question_text }}</h1>
-
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    
+</style>
+<h2>{{ question.question_text }}</h2>
+{% load static %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
@@ -8,5 +21,6 @@
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 {% endfor %}
-<input type="submit" value="Vote">
+<h3><input type="submit" value="Vote"></h3>
 </form>
+<img src={% static "img/vote1.jpg" %}>

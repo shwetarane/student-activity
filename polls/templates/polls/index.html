@@ -1,12 +1,36 @@
-{% load static %}
 
+<style type="text/css">
+    .button {background-color: rgb(123, 170, 186);}
+    
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+    
+</style>
+
+{% block title %}
+   <h1> Election Poll </h1>
+{% endblock %}
+
+{% block content %}
+    <h2> Its Polling Time!!! </h2>
+    <p> Be ready to caste your vote for your favourite candidate. Contribute for a change :) </p>
+{% endblock %}
+
+{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li><h2><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h2></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+<img src={% static "img/flagvote.jpg" %}>
