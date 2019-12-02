@@ -3,6 +3,7 @@ from django.conf import settings
 from books.models import Book
 from orders.models import Orders
 from bus.models import Ticket
+from meals.models import MealPlan
 import decimal
 
 class Cart(object):
@@ -46,6 +47,8 @@ class Cart(object):
             books = Book.objects.filter(id__in=book_ids)
         elif self.which_session == 'ticket':
             books = Ticket.objects.filter(id__in=book_ids)
+        elif self.which_session == 'meal':
+            books = MealPlan.objects.filter(id__in=book_ids)
 
         cart = self.cart.copy()
         for book in books:
@@ -68,7 +71,6 @@ class Cart(object):
                 return round(discount,2)
         return round(discount,2)
 
-
     def get_discounted_price(self):
         last_order = Orders.objects.latest('created')
         if last_order:
@@ -80,6 +82,33 @@ class Cart(object):
             total_price = self.get_total_price()
         return round(Decimal(float(total_price)),2)
 
+
+        # meal Plans
+
+    def get_meal_discount(self):
+        cart = self.cart.copy()
+        total_price = 0
+        for item in cart:
+            if cart[item]['book'].plan_type == 'Semester Plan':
+                total_price += cart[item]['price'] * cart[item]['quantity']
+        discount = total_price * Decimal(.05)
+        return round(discount,2)
+
+    def get_meal_discounted_price(self):
+        cart = self.cart.copy()
+        total_price = 0
+        total_price_a =0
+        discount =0
+        for item in cart:
+            if cart[item]['book'].plan_type == 'Semester Plan':
+                total_price_a += cart[item]['price'] * cart[item]['quantity']
+                discount = total_price_a * Decimal(.05)
+                total_price_a -= discount
+            else:
+                total_price += cart[item]['price'] * cart[item]['quantity']
+        total_price += total_price_a
+        return round(total_price,2)
+        
     def get_total_price(self):
 
         return round(sum(Decimal(float(item['price']) * item['quantity']) for item in self.cart.values()),2)
@@ -95,6 +124,9 @@ class Cart(object):
         del self.session[self.which_session]
         self.save()
 
+    def meal_cart_clear(self):
+        del self.session[self.which_session]
+        self.save()
 
 
 

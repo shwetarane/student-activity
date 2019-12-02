@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2> Shopping Cart</h2>
+    <h2> Bus Ticket Cart</h2>
     <table width="100%" cellspacing="200" cellpadding="100">
         <thead bgcolor="#008CBA">
             <tr>
@@ -55,6 +55,7 @@
         </tbody>
     </table>
     <p class="text-right">
+        <a href="{% url "bus:get_tickets" %}" class="button light"> <B>Continue shopping >></B></a>
         <br><button class="btn btn-default"><a href="{% url "orders:bus_order_create" %}" class="button">Checkout</a></button>
         <br>
         <br>

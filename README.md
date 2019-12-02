@@ -98,3 +98,7 @@ So just have only one super user  - will fix this issue soon]
 ## Database - sqlite file.
 
 * Please don't checkin your sqlite file. Cleaned up all the users so that we can avoid few migration issue related to users mentioned above.
+
+## Meal "Plan Type" field Values in the Database
+* Semester Plan
+* Monthly Plan

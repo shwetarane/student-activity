@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, reverse
-from .models import OrderItem, Orders, BusOrderItem
-from .forms import OrderCreateForm, BusOrderCreateForm
+from .models import OrderItem, Orders, BusOrderItem, MealOrderItem
+from .forms import OrderCreateForm, BusOrderCreateForm, MealOrderCreateForm
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from decimal import Decimal
@@ -100,6 +100,65 @@ def bus_orders_history(request):
     except EmptyPage:
         orders = paginator.page(paginator.num_pages)
     return render(request, 'orders/tickets.html',\
+            {
+                'orders':orders
+            })
+
+
+@login_required
+def meal_order_create(request):
+    cart = Cart(request,'meal')
+    if request.method == 'POST':
+        form = MealOrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            total_price = 0
+            total_price_a =0
+            for item in cart:
+                if item['book'].plan_type == 'Semester Plan':
+                    total_price_a += item['price'] * item['quantity']
+                    total_price_a = total_price_a - (total_price_a * Decimal(.05))
+                    MealOrderItem.objects.create(user=request.user,
+                                    order=order,
+                                    meal=item['book'],
+                                    price=total_price_a,
+                                    quantity=item['quantity'])
+                else:
+                    total_price += item['price'] * item['quantity']
+                    MealOrderItem.objects.create(user=request.user,
+                                    order=order,
+                                    meal=item['book'],
+                                    price=item['price'],
+                                    quantity=item['quantity'])
+
+            total_price+=total_price_a
+            #order.total_price = cart.get_ticket_price()
+            order.total_price = total_price
+            order = form.save()
+            cart.meal_cart_clear()
+            request.session['order_id'] = order.id
+            return redirect(reverse('payment:meal_payment_process'))
+            #return render(request,'orders/created.html',
+            #           {'order':order})
+    else:
+        form = MealOrderCreateForm()
+    return render(request,'orders/meal_order_create.html',
+                    {'cart':cart,'form':form})
+
+@login_required
+def meal_orders_history(request):
+
+    orders = MealOrderItem.objects.filter(user=request.user)
+    
+    paginator = Paginator(orders,10)
+    page = request.GET.get('page')
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
+    return render(request, 'orders/meals.html',\
             {
                 'orders':orders
             })

@@ -56,6 +56,7 @@ urlpatterns = [
     path('payment/',include('payment.urls',namespace='payment')),
     path('books/',include('books.urls',namespace='books')),
     path('bus/',include('bus.urls',namespace='bus')),
+    path('meal-plan/',include('meals.urls',namespace='meal-plan')),
     path('faculty/',include('faculty.urls',namespace='faculty')),
 ]
 

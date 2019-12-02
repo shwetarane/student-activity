@@ -9,9 +9,9 @@
     <!-- <H2> Checkout</H2> -->
 
     <div class="Order-Info">
-        <h4>Your Order </h4>
-        <p> [10% discount apply if the last order was greater than $200 ]</p>
-        <h4>In your cart --</h4>
+        <h4>Your Meal Ticket Order </h4>
+        <p> [5% discount apply if you choose <B>Semester Meal Plan]</B></p>
+        <h4>In your cart </h4>
         <ul>
             {% for item in cart %}
                 <li>
@@ -19,10 +19,11 @@
                     <span> <B><i> $ {{item.total_price }}</span></i></B>
                 </li>
             {% endfor %}
-        </ul>
-        <br><p> Total amount : ${{ cart.get_total_price }}</p>
-        <p> 10% discount : ${{ cart.get_discount }}</p>
-        <B><p> Final Price : ${{ cart.get_discounted_price }}</p></center></B>
+</ul>
+        <br><p> <B>Total amount : ${{ cart.get_total_price }}</p></B>
+        <p> 5% discount : ${{ cart.get_meal_discount }}</p>
+        <B><p> Final Price : ${{ cart.get_meal_discounted_price }}</p></center></B>
+
     </div>
 <br></br>
     <h5>Please enter your details:</h5><hr></hr>

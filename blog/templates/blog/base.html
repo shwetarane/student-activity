@@ -95,7 +95,12 @@
                       <a href="{%  url 'orders:bus_orders_history' %}">Ticket Orders</a>
                     </div>
                   </div>
-                
+                <div class="dropdown">
+                  <a class="nav-item nav-link" href="{%  url 'cart:cart_detail_meal' %}"> Meals Cart</button></href>
+                  <div class="dropdown-content">
+                    <a href="{%  url 'orders:meal_orders_history' %}">Meal Plan Orders</a>
+                  </div>
+                </div>
 
                 <a class="nav-item nav-link" href="{%  url 'logout' %}">Logout</a>
               {% else %}
@@ -131,6 +136,7 @@
                   <a class="list-group-item list-group-item-light" href="{%  url 'books:book_search' %}">Books Search</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'books:book_lists' %}">Books Store</a>
                   <a class="list-group-item list-group-item-light" href="{%  url 'bus:get_tickets' %}">Bus Tickets</a>
+                  <a class="list-group-item list-group-item-light" href="{%  url 'meals:get_meals' %}">Meal Plan</a>
                 </ul>
               </p>
             </div>
