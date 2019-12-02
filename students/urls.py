@@ -58,6 +58,7 @@ urlpatterns = [
     path('bus/',include('bus.urls',namespace='bus')),
     path('meal-plan/',include('meals.urls',namespace='meal-plan')),
     path('faculty/',include('faculty.urls',namespace='faculty')),
+    path('polls/', include('polls.urls')),
 ]
 
 if settings.DEBUG:

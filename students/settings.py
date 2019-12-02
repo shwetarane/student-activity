@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
     'faculty.apps.FacultyConfig',
+    'polls.apps.PollsConfig',
 
     'crispy_forms',
 
