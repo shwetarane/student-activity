@@ -24,6 +24,11 @@
   pip install braintree // Needed for Payment Module
 
 ```
+# Polls module pre-requisite 
+```bash
+  pip install matplotlib // Needed for Polls Module
+
+```
 
 ### Other dependencies
 
