@@ -76,10 +76,10 @@ Also make sure, to import Django in the corresponding python & virtual environme
 * **Textbook Search**
 * **Purchase Books**
 * **Find a Roommate**
-* Meal Plan
-* Purchase Bus Tickets
+* **Meal Plan**
+* **Purchase Bus Tickets**
 * **Sport Activities and Parties**
-* Election polls
+* **Election polls**
 
 
 ## Credit Card Detail
