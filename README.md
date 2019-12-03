@@ -19,24 +19,6 @@
   ```bash
   pip install django
   ```
-# Payment module pre-requisite 
-```bash
-  pip install braintree // Needed for Payment Module
-
-```
-# Polls module pre-requisite 
-```bash
-  pip install matplotlib // Needed for Polls Module
-
-```
-
-### Other dependencies
-
----------------------------------------------------------------------
-
-```pip install django-widget-tweaks```
-
-```pip install django-filter``` // to filter posts
 
 ## Setting up the project
 
@@ -59,17 +41,29 @@ To access django-admin, use creds for superuser we just created : ```localhost:8
 
 ```python manage.py runserver```
 
-If encoutered with error on running, install the following binaries as well :-
-
-```pip3 install pillow```
-
-```pip3 install django-crispy-forms```
+If encountered with error on running, install the following binaries as well :-
 
 Also make sure, to import Django in the corresponding python & virtual environment. 
 
 ```python3```
 
 ```import django```
+
+### Dependencies:
+
+------
+
+```pip3 install pillow```
+
+```pip3 install django-crispy-forms```
+
+```pip install braintree``` 	//required for Payment module
+
+```pip install matplotlib```	// needed for Polls Module	
+
+```pip install django-widget-tweaks ``` 	// required for UI
+
+```pip install django-filter``` // to filter posts
 
 ## Functions
 
@@ -102,7 +96,7 @@ So just have only one super user  - will fix this issue soon]
 
 ## Database - sqlite file.
 
-* Please don't checkin your sqlite file. Cleaned up all the users so that we can avoid few migration issue related to users mentioned above.
+* Please don't commit your sqlite file. Cleaned up all the users so that we can avoid few migration issue related to users mentioned above.
 
 ## Meal "Plan Type" field Values in the Database
 * Semester Plan

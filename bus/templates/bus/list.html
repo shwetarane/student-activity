@@ -1,46 +1,30 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-<style type="text/css">
-    .button {background-color: rgb(123, 170, 186);}
-    
-    hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 1em 0;
-        padding: 0;
-    }
-    
-</style>
+
 
 
 {% block title %}
-    Bus Tickets
+    Bus Tickets Purchase
 {% endblock %}
 
 {% block content %}
     <h2> Bus Tickets</h2>
-
+    <p>Bobcat Shuttle provides transportation for students, faculty, staff, and visitors at Texas State University. Students and Faculty can also avail monthly oe semester long passes at the rates below.</p>
     {% for item in tickets %}
-        <div class="row">
 
-            <div class="column" >
+
+            <div class="card card-body" >
                 <span style="margin-left:4em"><B> <h4>Ticket Type : </B>{{item.ticket_type}}</h4></span> <br>
-                <span style="margin-left:4em"><B> Source : </B>{{item.source}}</span> <br>
-                <span style="margin-left:4em"><B> Destination : </B>{{item.destination}}</span> <br>
-                <span style="margin-left:4em"><B> Price : </B>{{item.price}}</span> <br>
+                <span style="margin-left:6em"><B> Source : </B>{{item.source}}</span> <br>
+                <span style="margin-left:6em"><B> Destination : </B>{{item.destination}}</span> <br>
+                <span style="margin-left:6em"><B> Price : </B>{{item.price}}</span> <br>
                 <form action ="{% url "cart:cart_add_ticket" item.id %}" method="post">
-                    <span style="margin-left:4em">{{ cart_form }}</span>
+                    <span style="margin-left:6em">{{ cart_form }}</span>
                     {% csrf_token %}
-                    <span style="margin-left:4em"><B></B><input type="submit" value="Add to cart"></span></B><br>
+                    <span style="margin-left:4em"><B></B><input type="submit" class="btn btn-success" value="Add to cart"></span></B><br>
                 </form>
-                <br>
-                <hr>
             </div>
-                
-            </div>            
     {% endfor %}
-
+<br><br>
 {% endblock %}

@@ -1,36 +1,24 @@
-
-<style type="text/css">
-    .button {background-color: rgb(123, 170, 186);}
-    
-    hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 1em 0;
-        padding: 0;
-    }
-    
-</style>
-
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
 {% block title %}
-   <h1> Election Poll </h1>
-{% endblock %}
 
-{% block content %}
-    <h2> Its Polling Time!!! </h2>
-    <p> Be ready to caste your vote for your favourite candidate. Contribute for a change :) </p>
+<h2> Student Senate </h2>
+<p> The Senate represents all students at Texas State University through its power to pass proposals called legislation. This legislation serves to represent the student body to the university administration.
+
+The Senate is composed of elected student representatives. The senators serve one year and two-year terms in the senate. Half of the seats are up for election each academic year. The represented colleges of the senate are from McCoy, Fine Arts and Communications, Liberal Arts, Applied Arts, Health Professions, Science and Engineering, Education, University, and At-Large</p>
 {% endblock %}
 
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><h2><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h2></li>
-    {% endfor %}
-    </ul>
+<p>
+  {% for question in latest_question_list %}
+  <h4> Vote for your favourite candidate here</h4>
+  <h3><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h3>
+  {% endfor %}
+</p>
 {% else %}
-    <p>No polls are available.</p>
+<p>No polls are available.</p>
 {% endif %}
-<img src={% static "img/flagvote.jpg" %}>
+{% endblock content%}

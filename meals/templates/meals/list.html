@@ -1,9 +1,9 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-<style type="text/css">
+<!-- <style type="text/css">
     .button {background-color: rgb(123, 170, 186);}
-    
+
     hr {
         display: block;
         height: 1px;
@@ -12,11 +12,10 @@
         margin: 1em 0;
         padding: 0;
     }
-    
-</style>
 
-<br>
-<br>
+</style> -->
+
+
 {% block title %}
     Student Meal Plan
 {% endblock %}
@@ -26,21 +25,19 @@
 
     <p>Fall of 2020 Texas State University is pleased to announce the New and Updated meal plan.  Enjoy healthy food options prepared daily at a reasonable cost to you.  Parents you can rest assured your students will be well fed and students you will be able to focus on your education and not on cooking and clean up.  The Café is open Monday through Thursday 7:30 am to 6:30 pm for breakfast, lunch and dinner and Fridays from 7:30 am to 2:30 pm.  The Texas State University meal plan begins the first day of each semester and five percent of your meals for semester plan. Meals are non-transfereable. It is available in multiple payment options. Please contact Student Accounts to use your financial aid award to purchase a meal plan.</p>
     {% for item in meals_list %}
-        <div class="row">
-            <div class="column" >
-                <span style="margin-left:4em"><B> <h4>Plan Type : </B>{{item.plan_type}}</h4></span> <br>
-                <span style="margin-left:4em"><B> Plan Description : </B>{{item.description}}</span> <br>
-                <span style="margin-left:4em"><B> Price : </B>{{item.price}}</span> <br>
-                <form action ="{% url "cart:cart_add_meal" item.id %}" method="post">
-                    <span style="margin-left:4em">{{ cart_form }}</span>
-                    {% csrf_token %}
-                    <span style="margin-left:4em"><B></B><input type="submit" value="Add to cart"></span></B><br>
-                </form>
-                <br>
-                <hr>
-            </div>
-                
-            </div>            
-    {% endfor %}
 
+            <div class="card card-body" >
+                <span style="margin-left:4em"><B> <h4>Plan Type : </B>{{item.plan_type}}</h4></span> <br>
+                <span style="margin-left:6em"><B> Plan Description : </B>{{item.description}}</span> <br>
+                <span style="margin-left:6em"><B> Price : </B>{{item.price}}</span> <br>
+                <form action ="{% url "cart:cart_add_meal" item.id %}" method="post">
+                    <span style="margin-left:6em">{{ cart_form }}</span>
+                    {% csrf_token %}
+                    <span style="margin-left:4em"><B></B><input class="btn btn-success" type="submit" value="Add to cart"></span></B><br>
+                </form>
+
+            </div>
+
+    {% endfor %}
+<br><br>
 {% endblock %}

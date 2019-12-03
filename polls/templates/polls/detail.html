@@ -1,26 +1,28 @@
-<style type="text/css">
-    .button {background-color: rgb(123, 170, 186);}
-    
-    hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 1em 0;
-        padding: 0;
-    }
-    
-</style>
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
 <h2>{{ question.question_text }}</h2>
 {% load static %}
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+<p>
+  <strong>{{ error_message }}</strong>
+</p>
+{% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
-<h3><input type="submit" value="Vote"></h3>
+  {% csrf_token %}
+  {% for choice in question.choice_set.all %}
+  <input
+  type="radio"
+  name="choice"
+  id="choice{{ forloop.counter }}"
+  value="{{ choice.id }}">
+  <label for="choice{{ forloop.counter }}">
+    {{ choice.choice_text }}
+  </label><br>
+  {% endfor %}
+  <h3><input type="submit" value="Vote"  class="btn btn-success btn-lg btn-block mt-4"></h3>
 </form>
-<img src={% static "img/vote1.jpg" %}>
+<!-- <img src={% static "img/vote1.jpg" %}> -->
+
+{% endblock content%}
