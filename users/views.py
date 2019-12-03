@@ -168,8 +168,8 @@ def roommateFind(request):
                     results = get_list_or_404 ( UserProfile, from_date__gte= form.cleaned_data['from_date'], to_date__lte = \
                         form.cleaned_data['to_date'], price__lte = form.cleaned_data['price'] )
                 elif form.cleaned_data['from_date'] != '' and form.cleaned_data['to_date'] != '':
-                    results = get_list_or_404 ( UserProfile, from_date= \
-                        form.cleaned_data['from_date'], to_date = form.cleaned_data['from_date'] )
+                    results = get_list_or_404 ( UserProfile, from_date__gte= \
+                        form.cleaned_data['from_date'], to_date__lte = form.cleaned_data['from_date'] )
             except Http404:
                     raise Http404 ( "No match is availabe for the given query %s %s %s" \
                                     % (form.cleaned_data['gender'], form.cleaned_data['from_date'], \

@@ -24,7 +24,7 @@ class UserProfile(models.Model):
     state = models.CharField(max_length=30, blank=True)
     zip_code = models.IntegerField(default=78758)
     birth_date = models.DateField(null=True, blank=True)
-    department = models.CharField(max_length=20,default='Computer Science')
+    department = models.CharField(max_length=20)
     from_date = models.DateField(default=timezone.now().date())
     to_date = models.DateField(default=timezone.now().date())
     price= models.DecimalField(max_digits=10, decimal_places=2, null=True)
