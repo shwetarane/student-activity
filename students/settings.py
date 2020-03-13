@@ -25,8 +25,8 @@ SECRET_KEY = os.environ.get('STUDENTS_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG_VALUE')
 
-ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Braintree Payment configuration
 
@@ -120,8 +120,6 @@ DATABASES = {
     }
 }
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -160,6 +158,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
