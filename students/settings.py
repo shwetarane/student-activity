@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('STUDENTS_SECRET_KEY')
+SECRET_KEY = 'afb329cdf3a4463ba84c6dff3b8dbb435a6afdb9fd21bb13'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG_VALUE')
+DEBUG = 'True'
 
 # ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
 ALLOWED_HOSTS = []
@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 BRAINTREE_MERCHANT_ID = '9gyqc4z3ss8w8rv2'
 BRAINTREE_PUBLIC_KEY = '86jjtvmy4d5yrqxj'
-BRAINTREE_PRIVATE_KEY = os.environ.get('BT_PRIVATE_KEY')
+BRAINTREE_PRIVATE_KEY = '44b7682d57d8d9527552cec921513604'
 
 
 from braintree import Configuration, Environment
