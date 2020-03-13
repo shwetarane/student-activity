@@ -20,20 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'afb329cdf3a4463ba84c6dff3b8dbb435a6afdb9fd21bb13'
+SECRET_KEY = 't_186yizknhbf33p@vk194ec3c2l55ytx3lrsd4apvst0zxl5a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
+
 
 # Braintree Payment configuration
 
 BRAINTREE_MERCHANT_ID = '9gyqc4z3ss8w8rv2'
 BRAINTREE_PUBLIC_KEY = '86jjtvmy4d5yrqxj'
 BRAINTREE_PRIVATE_KEY = '44b7682d57d8d9527552cec921513604'
-
 
 from braintree import Configuration, Environment
 Configuration.configure(
@@ -42,6 +41,8 @@ Configuration.configure(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
+
+
 
 # Application definition
 
@@ -120,6 +121,8 @@ DATABASES = {
     }
 }
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -159,10 +162,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -176,8 +175,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = os.environ.get('STUDENT_PORTAL_EMAIL_ADDRESS')
-EMAIL_HOST_PASSWORD = os.environ.get('STUDENT_PORTAL_PASSWORD')
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 # Store the cart in the user Session id
 
