@@ -25,8 +25,8 @@ SECRET_KEY = 'afb329cdf3a4463ba84c6dff3b8dbb435a6afdb9fd21bb13'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'True'
 
-# ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 # Braintree Payment configuration
 
