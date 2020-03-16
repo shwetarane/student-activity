@@ -20,13 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.environ.get('')
 SECRET_KEY = 't_186yizknhbf33p@vk194ec3c2l55ytx3lrsd4apvst0zxl5a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
-
+# ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
+ALLOWED_HOSTS = ['student-activities.herokuapp.com']
 
 # Braintree Payment configuration
 
