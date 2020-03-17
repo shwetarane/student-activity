@@ -26,8 +26,8 @@ SECRET_KEY = 't_186yizknhbf33p@vk194ec3c2l55ytx3lrsd4apvst0zxl5a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['hidden-reaches-14328.herokuapp.com']
-ALLOWED_HOSTS = ['student-activities.herokuapp.com']
+# ALLOWED_HOSTS = ['student-activities.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Braintree Payment configuration
 
@@ -160,7 +160,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
